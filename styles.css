@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -8,7 +9,6 @@ html {
 }
 
 body {
-  box-sizing: border-box;
   font-size: 16px;
   font-family: sans-serif;
   background-color: #162447;
@@ -24,6 +24,7 @@ body {
   top: 0;
   z-index: 100;
   height: 70px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
 }
 
 .navbar h1 {
@@ -47,9 +48,8 @@ body {
 }
 
 .navbar ul li {
-  /* padding: 10px 20px;
-  margin: 0 10px; */
   border-radius: 24px;
+  transition: 0.3s ease all;
 }
 
 .navbar ul li:hover {
@@ -67,9 +67,39 @@ body {
   color: #162447;
 }
 
-.main img {
-  width: 100%;
+.burger {
+  margin-right: 15px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  display: none;
 }
+
+.burger .line {
+  height: 5px;
+  width: 100%;
+  background-color: #6b8ee7;
+  transition: 0.3s ease all;
+}
+
+.burger.active .line1 {
+  transform: rotate(-45deg) translate(-10px, 9px);
+}
+
+.burger.active .line2 {
+  opacity: 0;
+}
+
+.burger.active .line3 {
+  transform: rotate(45deg) translate(-8px, -6px);
+}
+
+/* .main img {
+  width: 100%;
+} */
 
 #welcome {
   height: 100vh;
@@ -168,6 +198,7 @@ a {
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
   color: #fff;
+  border-radius: 12px;
   transition: 0.3s ease all;
 }
 
@@ -179,6 +210,7 @@ a {
 
 .card-header img {
   width: 100%;
+  object-fit: cover;
 }
 
 .card-content ul {
@@ -205,22 +237,29 @@ footer p {
 }
 
 @media (max-width: 600px) {
-  .navbar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-  }
-
-  .navbar h1 {
-    position: relative;
-    right: 15px;
-  }
-
   .navbar ul {
+    display: block;
+    position: absolute;
+    background-color: #162447;
+    height: calc(100vh - 70px);
+    top: 70px;
+    left: 0;
+    width: 50%;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: 0.3s ease all;
+  }
+
+  .navbar ul.active {
+    transform: translateX(0);
+  }
+
+  .navbar ul li {
+    margin: 20px 0;
+  }
+
+  .burger {
     display: flex;
-    left: 15px;
   }
 
   #pricing {
